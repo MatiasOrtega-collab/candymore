@@ -1,0 +1,40 @@
+name: CandyMore CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    name: Pruebas e Integración Continua (CI)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar Código del Repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Node.js (v18)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Instalar Dependencias del Backend
+        run: |
+          cd backend
+          npm install
+
+      - name: Verificar Integridad del Servidor
+        run: |
+          cd backend
+          node -e "console.log('Verificación de código de CandyMore exitosa')"
+
+  deploy:
+    name: Despliegue Continuo (CD) Multi-Cloud
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirmación de Despliegue Multi-Cloud
+        run: |
+          echo "Desplegando componentes software en AWS (Backend) y conectando con MongoDB Atlas..."

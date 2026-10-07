@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CandyMore | Dulcería Artesanal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navegación -->
+    <header>
+        <div class="navbar">
+            <div class="logo">🍬 CandyMore</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Dulces</a></li>
+                    <li><a href="#checkout">Carrito</a></li>
+                    <li><a href="#eventos">Eventos</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon" id="cart-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección Hero (Inicio) -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>El lugar más dulce de la ciudad</h1>
+            <p>Descubre nuestra variedad de postres, caramelos y catering para eventos.</p>
+            <a href="#productos" class="btn">Ver Catálogo</a>
+        </div>
+    </section>
+
+    <!-- Sección Productos (Cargados dinámicamente desde MongoDB) -->
+    <section id="productos" class="products-section">
+        <h2>Nuestras Especialidades</h2>
+
+        <!-- Barra de Búsqueda en Vivo -->
+        <div style="max-width: 400px; margin: 0 auto 25px auto;">
+            <input type="text" 
+                   id="input-busqueda" 
+                   placeholder="🔍 Buscar dulce o postre..." 
+                   style="width: 100%; padding: 12px 18px; border-radius: 25px; border: 1.5px solid #eaeaea; outline: none; font-size: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+        </div>
+        
+        <!-- El Grid se llenará dinámicamente desde la API -->
+        <div class="products-grid" id="contenedor-productos">
+            <p style="text-align: center; width: 100%;">Cargando catálogo delicioso...</p>
+        </div>
+    </section>
+
+    <!-- Sección Checkout (Carrito - Pedido Pequeño) -->
+    <section id="checkout" class="contact-section">
+        <h2>Tu Carrito de Compras 🛒</h2>
+        
+        <div id="lista-carrito" style="margin-bottom: 20px; text-align: left; max-width: 500px; margin: 0 auto; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+            <p id="mensaje-vacio">El carrito está vacío.</p>
+            <ul id="items-carrito" style="list-style: none; padding: 0;"></ul>
+            <h3 style="text-align: right; margin-top: 15px;">Total: $<span id="total-carrito">0.00</span></h3>
+        </div>
+
+        <form id="form-pedido-pequeno" class="contact-form">
+            <input type="text" id="cliente-nombre" placeholder="Tu Nombre Completo" required>
+            <input type="email" id="cliente-email" placeholder="Tu Correo Electrónico" required>
+            <input type="text" id="cliente-telefono" placeholder="Tu Teléfono" required>
+            <input type="text" id="cliente-direccion" placeholder="Dirección de Entrega (Delivery)" required>
+            <button type="submit" class="btn" id="btn-comprar">Confirmar Pedido</button>
+        </form>
+    </section>
+
+    <!-- Sección Pedidos Grandes (Eventos) -->
+    <section id="eventos" class="contact-section" style="background-color: var(--color-claro);">
+        <h2>Cotiza tu Evento (Pedido Grande) 🎉</h2>
+        <p style="margin-bottom: 20px;">Ideal para bodas, cumpleaños y catering corporativo.</p>
+        
+        <form id="form-pedido-grande" class="contact-form">
+            <input type="text" id="evento-nombre" placeholder="Nombre del Contacto" required>
+            <input type="email" id="evento-email" placeholder="Correo Electrónico" required>
+            <input type="text" id="evento-telefono" placeholder="Teléfono" required>
+            
+            <input type="text" id="evento-tipo" placeholder="Tipo de Evento (ej. Boda, Cumpleaños)" required>
+            <input type="number" id="evento-personas" placeholder="Cantidad de Personas" required>
+            <input type="date" id="evento-fecha" required>
+            
+            <textarea id="evento-observaciones" placeholder="¿Qué dulces necesitas para tu evento?" rows="4" required></textarea>
+            
+            <button type="submit" class="btn">Solicitar Cotización</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 CandyMore. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Enlace al archivo de lógica JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

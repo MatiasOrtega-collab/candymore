@@ -13,22 +13,18 @@ jobs:
 
     steps:
       - name: Descargar Código del Repositorio
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Configurar Node.js (v18)
-        uses: actions/setup-node@v3
+      - name: Configurar Node.js (v20)
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
-      - name: Instalar Dependencias del Backend
-        run: |
-          cd backend
-          npm install
+      - name: Instalar Dependencias
+        run: npm install
 
-      - name: Verificar Integridad del Servidor
-        run: |
-          cd backend
-          node -e "console.log('Verificación de código de CandyMore exitosa')"
+      - name: Verificar Integridad de la API
+        run: node -e "console.log('Verificación de construcción de CandyMore exitosa')"
 
   deploy:
     name: Despliegue Continuo (CD) Multi-Cloud

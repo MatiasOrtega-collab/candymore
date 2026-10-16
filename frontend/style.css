@@ -1,0 +1,282 @@
+/* ==========================================
+   CANDYMORE - ESTILOS PRINCIPALES
+   ========================================== */
+
+/* Reseteo General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --color-primario: #ff6b8b;
+    --color-primario-hover: #e05270;
+    --color-secundario: #ffd3b6;
+    --color-oscuro: #332c27;
+    --color-fondo: #fff8f8;
+    --color-blanco: #ffffff;
+    --sombra-suave: 0 8px 20px rgba(0, 0, 0, 0.05);
+    --sombra-card: 0 10px 25px rgba(255, 107, 139, 0.12);
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-oscuro);
+    line-height: 1.6;
+}
+
+/* Header & Navegación */
+header {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--color-primario);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-oscuro);
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--color-primario);
+}
+
+.cart-icon {
+    font-size: 18px;
+    cursor: pointer;
+    position: relative;
+    color: var(--color-oscuro);
+    padding: 8px 14px;
+    background: #f4f4f4;
+    border-radius: 50px;
+    transition: transform 0.2s ease;
+}
+
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--color-primario);
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 7px;
+    border-radius: 50%;
+}
+
+/* Hero (Portada) */
+.hero {
+    background: linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65)), 
+                url('image/wallapaper\ dulces.jpg') no-repeat center center/cover;
+    height: 45vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #4a154b;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--color-oscuro);
+}
+
+/* Botón Estándar */
+.btn {
+    display: inline-block;
+    background-color: var(--color-primario);
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 107, 139, 0.3);
+}
+
+.btn:hover {
+    background-color: var(--color-primario-hover);
+    transform: translateY(-2px);
+}
+
+/* Secciones de Contenido */
+.products-section, .contact-section {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 35px 25px;
+    background: var(--color-blanco);
+    border-radius: 16px;
+    box-shadow: var(--sombra-suave);
+}
+
+.products-section h2, .contact-section h2 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 25px;
+    color: var(--color-oscuro);
+}
+
+/* Tarjetas de Productos (Grid Dinámico) */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background-color: var(--color-blanco);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--sombra-card);
+}
+
+.product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 18px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.product-info h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.product-info p {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 12px;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--color-primario);
+    margin-bottom: 12px;
+}
+
+.add-to-cart-btn {
+    background-color: var(--color-secundario);
+    color: var(--color-oscuro);
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #fca875;
+}
+
+/* Formularios de Pedidos (Delivery y Eventos) */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #eaeaea;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: #fafafa;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    border-color: var(--color-primario);
+    background-color: #ffffff;
+}
+
+/* Carrito de Compras (Vista Previa) */
+#lista-carrito {
+    background: #fafafa !important;
+    border: 1px dashed #ddd;
+    border-radius: 12px !important;
+    padding: 18px !important;
+}
+
+/* Animaciones */
+.cart-pop {
+    animation: bounce 0.4s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+}
+
+/* Pie de página */
+footer {
+    text-align: center;
+    padding: 25px;
+    background: var(--color-oscuro);
+    color: white;
+    margin-top: 50px;
+    font-size: 14px;
+}

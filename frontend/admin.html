@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CandyMore - Panel de Administración</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .admin-table th, .admin-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .admin-table th {
+            background-color: #f8f9fa;
+            color: #333;
+            font-weight: bold;
+        }
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .badge-pequeno { background-color: #e3f2fd; color: #1976d2; }
+        .badge-grande { background-color: #f3e5f5; color: #7b1fa2; }
+        .refresh-btn {
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .refresh-btn:hover { background-color: #ff4757; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>🍬 CandyMore - Panel Admin</h1>
+        </div>
+        <nav>
+            <a href="index.html">Ver Tienda</a>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>Histórico de Pedidos Registrados</h2>
+            <button class="refresh-btn" onclick="cargarPedidosAdmin()">🔄 Actualizar Lista</button>
+        </div>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID / Fecha</th>
+                    <th>Cliente</th>
+                    <th>Tipo</th>
+                    <th>Detalles / Productos</th>
+                    <th>Dirección / Evento</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-pedidos-body">
+                <tr>
+                    <td colspan="5" style="text-align: center;">Cargando pedidos desde MongoDB...</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>

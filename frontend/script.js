@@ -1,5 +1,5 @@
 // URL base de nuestro Backend API
-const API_URL = "http://localhost:3000/api";
+const API_URL = "/api";
 
 // Estado local del Carrito y Productos
 let carrito = [];

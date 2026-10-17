@@ -1,12 +1,13 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
 const { connectDB } = require("./config/database");
 const productosRoutes = require("./routes/productos.routes");
 const pedidosRoutes = require("./routes/pedidos.routes");
 
-// 1. Importar los módulos de Swagger
+// Importar los módulos de Swagger
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger/swagger');
 
@@ -16,28 +17,37 @@ const PORT = process.env.PORT || 3000;
 // Middlewares
 app.use(cors());
 app.use(express.json());
+// 1. Agregado según la guía de tu clase para procesar formularios
+app.use(express.urlencoded({ extended: true })); 
 
-// 2. Ruta para la interfaz visual de Swagger
+// Servir frontend
+app.use(express.static(path.join(__dirname, "frontend")));
+
+// Ruta para la interfaz visual de Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Rutas de la API
+// Rutas de la API (Backend)
 app.use("/api/productos", productosRoutes);
 app.use("/api/pedidos", pedidosRoutes);
 
-// Ruta inicial de prueba
+// 2. Ruta raíz agregada exactamente como pide el profesor
 app.get("/", (req, res) => {
-  res.json({
-    mensaje: "API de CandyMore funcionando"
-  });
+  res.sendFile(path.join(__dirname, "frontend", "index.html"));
 });
 
 async function iniciarServidor() {
-  await connectDB();
+  try {
+    await connectDB();
 
-  app.listen(PORT, () => {
-    console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
-    console.log(`Documentación de la API en http://localhost:${PORT}/api-docs`);
-  });
+    // 3. Agregado el "0.0.0.0" vital para que Docker exponga el puerto correctamente
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
+      console.log(`Documentación de la API en http://localhost:${PORT}/api-docs`);
+    });
+  } catch (error) {
+    console.error("Error al iniciar el servidor:", error);
+    process.exit(1);
+  }
 }
 
 iniciarServidor();

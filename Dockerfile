@@ -1,20 +1,17 @@
-# Usar una imagen oficial de Node.js ligera
-FROM node:18-alpine
+# 1. Usar una imagen oficial de Node.js (la versión 20 es recomendada, como en tu clase)
+FROM node:20-alpine
 
-# Establecer el directorio de trabajo dentro del contenedor
+# 2. Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar los archivos de configuración de paquetes
+# 3. Copiar solo los archivos de configuración de paquetes primero (para optimizar)
 COPY package*.json ./
 
-# Instalar dependencias
+# 4. Instalar las dependencias
 RUN npm install
 
-# Copiar el resto del código del proyecto (controladores, frontend, config)
+# 5. Copiar el resto del código del proyecto (frontend, controladores, config, etc.)
 COPY . .
 
-# Exponer el puerto que utiliza tu aplicación (ajusta al puerto real de tu app)
-EXPOSE 3000
-
-# Comando para iniciar la aplicación
+# 6. Comando para iniciar la aplicación en producción (usando Node, no nodemon)
 CMD ["npm", "start"]
